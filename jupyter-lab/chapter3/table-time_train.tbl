@@ -1,0 +1,28 @@
+\begin{table}
+\centering
+\caption{جدول زمان آموزش الگوریتم‌های در مرحله آموزش شبکه عصبی}
+\label{time_train}
+\begin{tabular}{lllllllll}
+\toprule
+ method &          adadelta &           adagrad &              adam &            adamax &              lamb &            rmsprop &             rprop &               sgd \\
+\midrule
+ fsrcnn &  \bfseries 0.3136 &  \bfseries 0.0055 &            0.0043 &            0.0038 &  \bfseries 0.0098 &  \bfseries 11.1524 &  \bfseries 0.0022 &  \bfseries 0.2465 \\
+    mem &            0.0503 &            0.0016 &            0.0013 &            0.0014 &            0.0013 &             0.0013 &            0.0013 &            0.0107 \\
+  srcnn &            0.0308 &            0.0045 &  \bfseries 0.0044 &  \bfseries 0.0045 &            0.0041 &             0.0079 &            0.0016 &            0.0057 \\
+    sub &            0.0057 &            0.0030 &            0.0038 &            0.0033 &            0.0030 &             0.0084 &            0.0014 &            0.0051 \\
+   vdsr &            0.0013 &            0.0013 &            0.0013 &            0.0013 &            0.0013 &             0.0015 &            0.0012 &            0.0013 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.9]{./chapter3/images/table-time_train-axis0.jpg}
+\caption{جدول خطا}
+\label{fig:time_train_axis0}
+\end{figure}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.9]{./chapter3/images/table-time_train-axis1.jpg}
+\caption{جدول خطا}
+\label{fig:time_train_axis1}
+\end{figure}

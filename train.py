@@ -64,16 +64,3 @@ def main():
 
 if __name__ =='__main__':
     main()
-
-# Calculating FLops
-# https://github.com/vra/flopth
-
-# python train.py -l xxx -uf 1 -ds zurikh -b 4  -bt 8 -n 100 -m vdsr,sub,mem,fsrcnn,srcnn -o adam,sgd,lamb,adadelta,adagrad,rmsprop,rprop,adamax
-
-# python train.py -l xxx -uf 1 -ds zurikh -b 4  -bt 8 -n 10 -m fsrcnn,srcnn -o sgd,adam,lamb,adadelta,adagrad,rmsprop,rprop,adamax
-
-# python train.py -l xxx -uf 1 -ds zurikh -b 8  -bt 8 -n 10 -m srcnn
-# python train.py -l xxx -uf 1 -ds zurikh -b 4  -bt 8 -n 10 -m fsrcnn
-# python train.py -l xxx -uf 1 -ds zurikh -b 4  -bt 8 -n 10 -m vdsr
-# python train.py -l xxx -uf 1 -ds zurikh -b 8  -bt 8 -n 10 -m sub
-# python train.py -l xxx -uf 1 -ds zurikh -b 8  -bt 8 -n 10 -m mem

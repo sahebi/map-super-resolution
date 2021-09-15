@@ -16,18 +16,19 @@ def load_img(filepath, color_system='YCbCr'):
     return y
 
 class DatasetFromFolder(data.Dataset):
-    def __init__(self, image_dir, input_transform=None, target_transform=None, color_system='YCbCr'):
+    def __init__(self, image_dir, input_transform=None, target_transform=None, color_system='YCbCr',colab_path="./"):
         super(DatasetFromFolder, self).__init__()
         # self.image_filenames = [join(image_dir, x) for x in listdir(image_dir) if is_image_file(x)]
         self.image_filenames  = [x for x in glob.glob(f'{image_dir}/*.lr.jpg')]
 
-        self.input_transform = input_transform
+        self.input_transform  = input_transform
         self.target_transform = target_transform
+        self.colab_path       = colab_path
 
     def __getitem__(self, index):
         # input_image = load_img(self.image_filenames[index])
         # target = input_image.copy()
-        input_filename    = self.image_filenames[index]
+        input_filename    = self.image_filenames[index].replace('./',self.colab_path)
         # target_filename   = input_filename.replace(".lr.jpg", ".orginal.jpg")
         target_filename   = input_filename.replace(".2.lr.jpg", ".x.orginal.jpg").replace(".4.lr.jpg", ".x.orginal.jpg").replace(".8.lr.jpg", ".x.orginal.jpg")
 

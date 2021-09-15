@@ -66,7 +66,7 @@ def target_transform(crop_size):
         ToTensor(),
     ])
 
-def get_data(dataset_name, data_type='test', upscale_factor=2, color_system='YCbCr', sample_size=None):
+def get_data(dataset_name, data_type='test', upscale_factor=2, color_system='YCbCr', sample_size=None, colab_path="./"):
     with open(DATASET_FILE_NAME, 'r') as stream:
         try:
             dataset_yml = yaml.safe_load(stream)
@@ -79,12 +79,14 @@ def get_data(dataset_name, data_type='test', upscale_factor=2, color_system='YCb
         return dataset.DatasetFromFolder(data_dir,
                                 input_transform=input_transform_orginal_size(crop_size, upscale_factor),
                                 target_transform=target_transform(crop_size),
-                                color_system=color_system)
+                                color_system=color_system,
+                                colab_path=colab_path)
     else:
         return dataset.DatasetFromFolder(data_dir,
                                 input_transform=input_transform(crop_size, upscale_factor),
                                 target_transform=target_transform(crop_size),
-                                color_system=color_system)
+                                color_system=color_system,
+                                colab_path=colab_path)
 
 def get_training_set(dataset_name='COCO', upscale_factor=2):
     with open(DATASET_FILE_NAME, 'r') as stream:

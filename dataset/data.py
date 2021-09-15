@@ -66,7 +66,7 @@ def target_transform(crop_size):
         ToTensor(),
     ])
 
-def get_data(dataset_name, data_type='test', upscale_factor=2, color_system='YCbCr', sample_size=None, colab_path="/content/gdrive/MyDrive/super-resolution/map-super-resolution/"):
+def get_data(dataset_name, data_type='test', upscale_factor=2, color_system='YCbCr', sample_size=None, colab_path="./"):
     with open(DATASET_FILE_NAME, 'r') as stream:
         try:
             dataset_yml = yaml.safe_load(stream)

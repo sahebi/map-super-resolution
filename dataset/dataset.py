@@ -28,7 +28,7 @@ class DatasetFromFolder(data.Dataset):
     def __getitem__(self, index):
         # input_image = load_img(self.image_filenames[index])
         # target = input_image.copy()
-        input_filename    = self.image_filenames[index].replace('./',self.colab_path)
+        input_filename    = self.image_filenames[index].replace('./','/content/gdrive/MyDrive/super-resolution/map-super-resolution/')
         # target_filename   = input_filename.replace(".lr.jpg", ".orginal.jpg")
         target_filename   = input_filename.replace(".2.lr.jpg", ".x.orginal.jpg").replace(".4.lr.jpg", ".x.orginal.jpg").replace(".8.lr.jpg", ".x.orginal.jpg")
 

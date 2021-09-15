@@ -1,6 +1,7 @@
 {
   'zurikh': {
     path: '/content/gdrive/MyDrive/super-resolution/map-super-resolution/dataset/zurikh',
+    # path: './dataset/zurikh',
     train: '/train',
     test: '/test',
     val: '',

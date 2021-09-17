@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser(description='Single Image Super Resolution trai
 parser.add_argument('--model', '-m',            type=str, default='srcnn',      help='choose which model is going to use (srcnn, vdsr, sub, mem, fsrcnn), Default=srcnn')
 parser.add_argument('--dataset', '-ds',         type=str, default='BSDS300',    help='Name of dataset defined in dataset.yml, default=BSDS300')
 parser.add_argument('--logprefix', '-l',        type=str, default='',           help='logfile prefix')
-parser.add_argument('--patterb', '-p',          type=str, default='*.jpg',      help='Pattern of open file')
+parser.add_argument('--pattern', '-p',          type=str, default='*.jpg',      help='Pattern of open file')
 # Train Parameter
 parser.add_argument('--batchSize', '-b',      type=int, default=16,             help='Training batch size')
 parser.add_argument('--testBatchSize','-bt',  type=int, default=1,              help='Testing batch size')

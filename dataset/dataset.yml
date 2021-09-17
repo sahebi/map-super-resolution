@@ -1,4 +1,20 @@
 {
+  'xxx': {
+    path: '/content/gdrive/MyDrive/dataset/8x05P',
+    # path: './dataset/zurr',
+    train: '/train',
+    test: '/test',
+    val: "",
+    url: ""
+  },
+  'zur': {
+    # path: '/content/gdrive/MyDrive/super-resolution/map-super-resolution/dataset/zurikh',
+    path: './dataset/zur',
+    train: '/train',
+    test: '/test',
+    val: '',
+    url: ""
+  },
   'zurikh': {
     # path: '/content/gdrive/MyDrive/super-resolution/map-super-resolution/dataset/zurikh',
     path: './dataset/zurikh',

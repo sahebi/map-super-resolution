@@ -1,5 +1,7 @@
 *.swp
 /checkpoints/*
 /dataset/zurikh/*
+/dataset/zur/*
+/dataset/zurr/*
 DS_Store
 __pycache__

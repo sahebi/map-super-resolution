@@ -46,6 +46,8 @@ os.chdir('/content/gdrive/My Drive/super-resolution/map-super-resolution')
 sample:
 python train.py -l xxx -uf 1 -ds zurikh -b 4  -bt 8 -n 100 -m vdsr,sub,mem,fsrcnn,srcnn -o adam,sgd,lamb,adadelta,adagrad,rmsprop,rprop,adamax
 
+python train.py -l testdatasetzur -uf 1 -ds zer -b 4 -bt 4 -n 30 -m vdsr,sub,mem,fsrcnn,srcnn -o adam,sgd,lamb,adadelta,adagrad,rmsprop,rprop,adamax
+
 
 ```
 

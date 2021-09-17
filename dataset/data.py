@@ -46,14 +46,14 @@ def calculate_valid_crop_size(crop_size, upscale_factor):
 
 def input_transform(crop_size, upscale_factor):
     return Compose([
-        CenterCrop(crop_size),
+        # CenterCrop(crop_size),
         # Resize(crop_size // upscale_factor),
         ToTensor(),
     ])
 
 def input_transform_orginal_size(crop_size, upscale_factor):
     return Compose([
-        CenterCrop(crop_size),
+        # CenterCrop(crop_size),
         # Resize(crop_size // upscale_factor),
         # Resize(crop_size),
         ToTensor(),
@@ -62,53 +62,53 @@ def input_transform_orginal_size(crop_size, upscale_factor):
 
 def target_transform(crop_size):
     return Compose([
-        CenterCrop(crop_size),
+        # CenterCrop(crop_size),
         ToTensor(),
     ])
 
-def get_data(dataset_name, data_type='test', upscale_factor=2, color_system='YCbCr', sample_size=None, colab_path="./"):
+def get_data(dataset_name, data_type='test', upscale_factor=1, color_system='YCbCr', sample_size=None, pattern="*.jpg"):
     with open(DATASET_FILE_NAME, 'r') as stream:
         try:
             dataset_yml = yaml.safe_load(stream)
             data_dir    = dataset_yml[dataset_name]['path'] + dataset_yml[dataset_name][data_type]
         except yaml.YAMLError as exc:
             print(exc)
-    crop_size = calculate_valid_crop_size(512, upscale_factor)
+    crop_size = calculate_valid_crop_size(128, upscale_factor)
 
     if sample_size=='BILINEAR':
         return dataset.DatasetFromFolder(data_dir,
-                                input_transform=input_transform_orginal_size(crop_size, upscale_factor),
-                                target_transform=target_transform(crop_size),
-                                color_system=color_system,
-                                colab_path=colab_path)
+                                        input_transform  = input_transform_orginal_size(crop_size, upscale_factor),
+                                        target_transform = target_transform(crop_size),
+                                        color_system     = color_system,
+                                        pattern          = pattern)
     else:
         return dataset.DatasetFromFolder(data_dir,
-                                input_transform=input_transform(crop_size, upscale_factor),
-                                target_transform=target_transform(crop_size),
-                                color_system=color_system,
-                                colab_path=colab_path)
+                                        input_transform  = input_transform(crop_size, upscale_factor),
+                                        target_transform = target_transform(crop_size),
+                                        color_system     = color_system,
+                                        pattern          = pattern)
 
-def get_training_set(dataset_name='COCO', upscale_factor=2):
+def get_training_set(dataset_name='COCO', upscale_factor=1):
     with open(DATASET_FILE_NAME, 'r') as stream:
         try:
             dataset_yml = yaml.safe_load(stream)
             train_dir   = dataset_yml[dataset_name]['path'] + dataset_yml[dataset_name]['train']
         except yaml.YAMLError as exc:
             print(exc)
-    crop_size = calculate_valid_crop_size(256, upscale_factor)
+    crop_size = calculate_valid_crop_size(128, 1)
 
     return dataset.DatasetFromFolder(train_dir,
                             input_transform=input_transform(crop_size, upscale_factor),
                             target_transform=target_transform(crop_size))
 
-def get_test_set(dataset_name = 'COCO', upscale_factor=2):
+def get_test_set(dataset_name = 'COCO', upscale_factor=1):
     with open(DATASET_FILE_NAME, 'r') as stream:
         try:
             dataset_yml = yaml.safe_load(stream)
             test_dir = dataset_yml[dataset_name]['path'] + dataset_yml[dataset_name]['test']
         except yaml.YAMLError as exc:
             print(exc)
-    crop_size = calculate_valid_crop_size(256, upscale_factor)
+    crop_size = calculate_valid_crop_size(128, 1)
 
     return dataset.DatasetFromFolder(test_dir,
                             input_transform=input_transform(crop_size, upscale_factor),

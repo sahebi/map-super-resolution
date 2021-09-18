@@ -40,8 +40,8 @@ args = parser.parse_args()
 def main():
     print('Loading dataset')
 
-    train_set            = data.get_data(dataset_name=args.dataset, data_type='train', upscale_factor=args.upscale_factor, pattern="*.16.lr.jpg")
-    test_set             = data.get_data(dataset_name=args.dataset, data_type='test',  upscale_factor=args.upscale_factor, pattern="*.16.lr.jpg")
+    train_set            = data.get_data(dataset_name=args.dataset, data_type='train', upscale_factor=args.upscale_factor, pattern=args.pattern)
+    test_set             = data.get_data(dataset_name=args.dataset, data_type='test',  upscale_factor=args.upscale_factor, pattern=args.pattern)
 
     training_data_loader = DataLoader(dataset=train_set, batch_size=args.batchSize,     shuffle=True)
     testing_data_loader  = DataLoader(dataset=test_set,  batch_size=args.testBatchSize, shuffle=False)

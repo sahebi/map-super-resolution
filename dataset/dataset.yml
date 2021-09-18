@@ -1,6 +1,6 @@
 {
-  'xxx': {
-    path: '/content/gdrive/MyDrive/dataset/8x05P',
+  '48x': {
+    path: '/content/gdrive/My Drive/dataset/48x/',
     # path: './dataset/zurr',
     train: '/train',
     test: '/test',

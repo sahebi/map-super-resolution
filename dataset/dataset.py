@@ -2,6 +2,7 @@ from os import listdir
 from os.path import join
 import glob
 
+import torch
 import torch.utils.data as data
 from PIL import Image
 
@@ -29,8 +30,11 @@ class DatasetFromFolder(data.Dataset):
         input_filename    = self.image_filenames[index]
         target_filename   = input_filename.replace(".2.lr.jpg", ".orginal.jpg").replace(".4.lr.jpg", ".orginal.jpg").replace(".8.lr.jpg", ".orginal.jpg").replace(".16.lr.jpg", ".orginal.jpg")
 
-        input_image = load_img(input_filename)
-        target      = load_img(target_filename)
+        input_image,_,_ = Image.open(input_filename).convert('YCbCr').split()
+        target,_,_      = Image.open(target_filename).convert('YCbCr').split()
+
+        # input_image = load_img(input_filename)
+        # target      = load_img(target_filename)
 
         if self.input_transform:
             input_image = self.input_transform(input_image)
@@ -41,3 +45,22 @@ class DatasetFromFolder(data.Dataset):
 
     def __len__(self):
         return len(self.image_filenames)
+
+    def rgb_to_ycbcr(image: torch.Tensor) -> torch.Tensor:
+        if not torch.is_tensor(image):
+            raise TypeError("Input type is not a torch.Tensor. Got {}".format(
+                type(image)))
+
+        if len(image.shape) < 3 or image.shape[-3] != 3:
+            raise ValueError("Input size must have a shape of (*, 3, H, W). Got {}"
+                            .format(image.shape))
+
+        r: torch.Tensor = image[..., 0, :, :]
+        g: torch.Tensor = image[..., 1, :, :]
+        b: torch.Tensor = image[..., 2, :, :]
+
+        delta = .5
+        y: torch.Tensor = .299 * r + .587 * g + .114 * b
+        cb: torch.Tensor = (b - y) * .564 + delta
+        cr: torch.Tensor = (r - y) * .713 + delta
+        return torch.stack((y, cb, cr), -3)

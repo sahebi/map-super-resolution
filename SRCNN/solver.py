@@ -39,6 +39,7 @@ class SRCNNTrainer(Trainer):
             self.criterion.cuda()
 
         self.set_optimizer() #==> Add
+        print("model build")
 
     def train(self):
         self.model.train()

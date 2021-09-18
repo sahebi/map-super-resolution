@@ -18,7 +18,8 @@ def load_img(filepath, color_system='YCbCr'):
 class DatasetFromFolder(data.Dataset):
     def __init__(self, image_dir, input_transform=None, target_transform=None, color_system='YCbCr',colab_path="./",pattern="*.jpg"):
         super(DatasetFromFolder, self).__init__()
-        self.image_filenames  = [x for x in glob.glob(f'{image_dir}/{pattern}')]
+        pattern_img = f"{image_dir}/{pattern}"
+        self.image_filenames  = [x for x in glob.glob(f'{pattern_img}')]
 
         self.input_transform  = input_transform
         self.target_transform = target_transform

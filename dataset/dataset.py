@@ -30,6 +30,7 @@ class DatasetFromFolder(data.Dataset):
         input_filename    = self.image_filenames[index]
         target_filename   = input_filename.replace(".2.lr.jpg", ".orginal.jpg").replace(".4.lr.jpg", ".orginal.jpg").replace(".8.lr.jpg", ".orginal.jpg").replace(".16.lr.jpg", ".orginal.jpg")
 
+        print(input_filename)
         input_image     = Image.open(input_filename)
         input_image     = input_image.convert('YCbCr')
         input_image,_,_ = input_image.split()

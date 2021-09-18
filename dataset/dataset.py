@@ -30,10 +30,10 @@ class DatasetFromFolder(data.Dataset):
         input_filename    = self.image_filenames[index]
         target_filename   = input_filename.replace(".2.lr.jpg", ".orginal.jpg").replace(".4.lr.jpg", ".orginal.jpg").replace(".8.lr.jpg", ".orginal.jpg").replace(".16.lr.jpg", ".orginal.jpg")
 
-        input_image     = Image.open(input_filename).convert('YCbCr').split()
+        input_image     = Image.open(input_filename)
         input_image     = input_image.convert('YCbCr')
         input_image,_,_ = input_image.split()
-        target          = Image.open(target_filename).convert('YCbCr').split()
+        target          = Image.open(target_filename)
         target          = target.convert('YCbCr')
         target,_,_      = target.split()
 

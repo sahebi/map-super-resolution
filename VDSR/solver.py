@@ -76,6 +76,7 @@ class VDSRTrainer(Trainer):
         train_loss = 0
         avg_psnr = 0
         for batch_num, (data, target) in enumerate(self.training_loader):
+            print(f"batch_num: {batch_num}")
             # data = self.img_preprocess(data)  # resize input image size
             data, target = data.to(self.device), target.to(self.device)
 
@@ -88,6 +89,7 @@ class VDSRTrainer(Trainer):
 
             psnr = 10 * log10(1 / loss.item())
             avg_psnr += psnr
+            print(f"PSNR: {psnr}")
 
         avg_loss = train_loss / len(self.training_loader)
         avg_psnr = avg_psnr   / len(self.training_loader)

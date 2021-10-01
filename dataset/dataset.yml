@@ -1,7 +1,7 @@
 {
   '48x': {
-    # path: '/content/gdrive/My Drive/dataset/48x/',
-    path: './dataset/zurr',
+    path: '/content/gdrive/My Drive/super-resolution/map-super-resolution//dataset/zurr/',
+    # path: './dataset/zurr',
     train: '/train',
     test: '/test',
     val: "",

@@ -12,6 +12,7 @@ class Net(torch.nn.Module):
             nn.Conv2d(in_channels=base_filter, out_channels=base_filter // 2, kernel_size=1, bias=True),
             nn.ReLU(inplace=True),
             nn.Conv2d(in_channels=base_filter // 2, out_channels=num_channels * (upscale_factor ** 2), kernel_size=5, stride=1, padding=2, bias=True),
+            nn.PixelShuffle(1)
         )
 
     def forward(self, x):

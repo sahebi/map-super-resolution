@@ -1,10 +1,10 @@
 import torch
 import torch.nn as nn
 
-
 class Net(torch.nn.Module):
-    def __init__(self, num_channels, upscale_factor, d=64, s=12, m=4):
+    def __init__(self, num_channels, upscale_factor=1, d=64, s=12, m=4):
         super(Net, self).__init__()
+        self.upscale_factor = 1
 
         self.first_part = nn.Sequential(nn.Conv2d(in_channels=num_channels, out_channels=d, kernel_size=5, stride=1, padding=2),
                                         nn.PReLU())
@@ -21,7 +21,7 @@ class Net(torch.nn.Module):
         self.mid_part = torch.nn.Sequential(*self.layers)
 
         # Deconvolution
-        # self.last_part = nn.ConvTranspose2d(in_channels=d, out_channels=num_channels, kernel_size=9, stride=upscale_factor, padding=3, output_padding=1)
+        self.last_part = nn.ConvTranspose2d(in_channels=d, out_channels=num_channels, kernel_size=9, stride=upscale_factor, padding=3, output_padding=1)
 
     def forward(self, x):
         out = self.first_part(x)

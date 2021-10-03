@@ -6,7 +6,6 @@ class Net(torch.nn.Module):
     def __init__(self, num_channels, upscale_factor, d=64, s=12, m=4):
         super(Net, self).__init__()
 
-        self.upscale_factor=1;
         self.first_part = nn.Sequential(nn.Conv2d(in_channels=num_channels, out_channels=d, kernel_size=5, stride=1, padding=2),
                                         nn.PReLU())
 

@@ -15,14 +15,18 @@ class Net(torch.nn.Module):
                                          nn.PReLU()))
         for _ in range(m):
             self.layers.append(nn.Conv2d(in_channels=s, out_channels=s, kernel_size=3, stride=1, padding=1))
+
         self.layers.append(nn.PReLU())
         self.layers.append(nn.Sequential(nn.Conv2d(in_channels=s, out_channels=d, kernel_size=1, stride=1, padding=0),
                                          nn.PReLU()))
 
         self.mid_part = torch.nn.Sequential(*self.layers)
 
+        self.last_part = nn.Sequential(nn.Conv2d(in_channels=d, out_channels=1, kernel_size=5, stride=1, padding=2),
+                                        nn.PReLU())
+
         # Deconvolution
-        self.last_part = nn.ConvTranspose2d(in_channels=d, out_channels=num_channels, kernel_size=9, stride=upscale_factor, padding=3, output_padding=1)
+        # self.last_part = nn.ConvTranspose2d(in_channels=d, out_channels=num_channels, kernel_size=9, stride=upscale_factor, padding=3, output_padding=1)
 
     def forward(self, x):
         out = self.first_part(x)

@@ -26,7 +26,7 @@ class Net(torch.nn.Module):
     def forward(self, x):
         out = self.first_part(x)
         out = self.mid_part(out)
-        # out = self.last_part(out)
+        out = self.last_part(out)
         return out
 
     def weight_init(self, mean=0.0, std=0.02):

@@ -7,6 +7,7 @@ from VDSR.solver import VDSRTrainer
 from SubPixelCNN.solver import SubPixelTrainer
 from MEMNET.solver import MEMNETTrainer
 from FSRCNN.solver import FSRCNNTrainer
+from SRGAN.solver import SRGANTrainer
 # from result.data import get_training_set, get_test_set
 
 parser = argparse.ArgumentParser(description='Single Image Super Resolution train model')
@@ -63,6 +64,8 @@ def main():
                 model = MEMNETTrainer(args, training_data_loader, testing_data_loader)
             elif args.model == 'fsrcnn':
                 model = FSRCNNTrainer(args, training_data_loader, testing_data_loader)
+            elif args.model == 'srgan':
+                model = SRGANTrainer(args, training_data_loader, testing_data_loader)
             model.run()
 
 if __name__ =='__main__':
